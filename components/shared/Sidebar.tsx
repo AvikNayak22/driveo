@@ -3,10 +3,11 @@ import { Button } from "../ui/button";
 import { Clock5, Cloud, Plus, Star, Tablet, Trash } from "lucide-react";
 import Link from "next/link";
 import Item from "./Item";
+import { Progress } from "../ui/progress";
 
 const Sidebar = () => {
   return (
-    <div className="h-[90vh] w-72 fixed top-[10vh] left-0 z-30 bg-slate-100 dark:bg-slate-700">
+    <div className="h-[90vh] border-r w-72 fixed top-[10vh] left-0 z-30 bg-slate-100 dark:bg-slate-700">
       <div className="flex flex-col p-3">
         <Button className="w-fit h-12 rounded-2xl px-6">
           <Plus />
@@ -18,6 +19,16 @@ const Sidebar = () => {
               <Item icon={link.icon} label={link.label} />
             </Link>
           ))}
+          <div className="flex flex-col space-y-2 mx-4">
+            <Progress className="h-2" value={30} />
+            <span className="dark:text-white">20 MB of 1.5 GB used</span>
+            <Button
+              className="rounded-full dark:text-white dark:border-white dark:hover:bg-slate-400 dark:hover:border-none hover:bg-slate-200"
+              variant="outline"
+            >
+              Get more storage
+            </Button>
+          </div>
         </div>
       </div>
     </div>
