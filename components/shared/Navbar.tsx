@@ -10,7 +10,7 @@ const Navbar = () => {
   const { userId } = auth();
 
   return (
-    <div className="h-[10vh] fixed left-0 top-0 right-0 z-30 bg-slate-100 dark:bg-slate-700">
+    <div className="h-[10vh] fixed left-0 top-0 right-0 z-30 bg-slate-100 dark:bg-slate-700 border-b">
       <div className="flex items-center justify-between my-4 mx-6">
         <Link href="/">
           <h3 className="flex items-center text-2xl font-bold dark:text-white">
@@ -35,7 +35,7 @@ const Navbar = () => {
           {userId ? (
             <UserBox />
           ) : (
-            <Avatar className="cursor-pointer">
+            <Avatar className="cursor-pointer  text-white">
               <AvatarFallback>AN</AvatarFallback>
             </Avatar>
           )}
