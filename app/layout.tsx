@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 import ModalProvider from "@/components/providers/modal-provider";
 
 const geistSans = localFont({
@@ -40,6 +41,7 @@ export default function RootLayout({
             storageKey="driveo"
           >
             <ModalProvider />
+            <Toaster richColors position="top-center" />
             {children}
           </ThemeProvider>
         </body>

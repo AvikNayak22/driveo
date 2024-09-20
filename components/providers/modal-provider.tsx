@@ -3,9 +3,9 @@ import FolderModal from "../modals/FolderModal";
 
 const ModalProvider = () => {
   return (
-    <>
+    <div className="fixed">
       <FolderModal />
-    </>
+    </div>
   );
 };
 
