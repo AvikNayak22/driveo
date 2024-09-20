@@ -8,7 +8,9 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       <Navbar />
       <Sidebar />
       <main className="w-full min-h-[90vh] relative top-[10vh] pl-72 p-4 bg-slate-100 dark:bg-slate-700">
-        <div className="h-[90vh] p-8 rounded-md bg-white ml-4">{children}</div>
+        <div className="h-[85vh] p-8 rounded-md bg-white dark:bg-slate-400 ml-4 ">
+          {children}
+        </div>
       </main>
     </div>
   );
