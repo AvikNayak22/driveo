@@ -1,4 +1,5 @@
 import Header from "@/components/shared/Header";
+import Lists from "@/components/shared/Lists";
 import { db } from "@/lib/firebase";
 import { auth } from "@clerk/nextjs/server";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -27,6 +28,10 @@ const HomePage = async () => {
   return (
     <>
       <Header label="My Drive" isHome />
+      <Lists
+        folders={JSON.parse(JSON.stringify(folders))}
+        files={JSON.parse(JSON.stringify(files))}
+      />
     </>
   );
 };
