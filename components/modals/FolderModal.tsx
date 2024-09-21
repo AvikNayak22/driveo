@@ -4,13 +4,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema } from "@/lib/validation";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { userFolder } from "@/hooks/useFolder";
 import { Button } from "../ui/button";
 import {
@@ -57,7 +51,6 @@ const FolderModal = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogTrigger>Open</DialogTrigger>
       <DialogContent className="max-w-sm">
         <DialogHeader>
           <DialogTitle>New Folder</DialogTitle>

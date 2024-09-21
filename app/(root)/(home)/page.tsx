@@ -1,11 +1,33 @@
-import { UserButton } from "@clerk/nextjs";
-import React from "react";
+import Header from "@/components/shared/Header";
+import { db } from "@/lib/firebase";
+import { auth } from "@clerk/nextjs/server";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
-const HomePage = () => {
+const getData = async (uid: string, type: "files" | "folders") => {
+  const data: { id: string }[] = [];
+  const q = query(
+    collection(db, type),
+    where("uid", "==", uid),
+    where("isArchived", "==", false)
+  );
+
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    data.push({ id: doc.id, ...doc.data() });
+  });
+
+  return data;
+};
+
+const HomePage = async () => {
+  const { userId } = auth();
+  const folders = await getData(userId!, "folders");
+  const files = await getData(userId!, "files");
+
   return (
-    <div>
-      <UserButton />
-    </div>
+    <>
+      <Header label="My Drive" isHome />
+    </>
   );
 };
 
