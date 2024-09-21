@@ -4,9 +4,21 @@ import { FileUp, Folder, FolderUp } from "lucide-react";
 import { ElementRef, useRef } from "react";
 import { Separator } from "../ui/separator";
 import { userFolder } from "@/hooks/useFolder";
+import {
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  updateDoc,
+} from "firebase/firestore";
+import { db, storage } from "@/lib/firebase";
+import { useUser } from "@clerk/nextjs";
+import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import { toast } from "sonner";
 
 const PopoverActions = () => {
   const { onOpen } = userFolder();
+  const { user } = useUser();
   const inputRef = useRef<ElementRef<"input">>(null);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,6 +35,30 @@ const PopoverActions = () => {
         image = e.target?.result as string;
       };
     }
+
+    const promise = addDoc(collection(db, "files"), {
+      name: file.name,
+      type: file.type,
+      size: file.size,
+      uid: user?.id,
+      timestamp: serverTimestamp(),
+      isArchived: false,
+    }).then((document) => {
+      const imageRef = ref(storage, `files/${document.id}/image`);
+      uploadString(imageRef, image, "data_url").then(() => {
+        getDownloadURL(imageRef).then((url) => {
+          updateDoc(doc(db, "files", document.id), {
+            image: url,
+          });
+        });
+      });
+    });
+
+    toast.promise(promise, {
+      success: "File uploaded successfully",
+      loading: "Uploading file...",
+      error: "Failed to upload file",
+    });
   };
 
   return (
