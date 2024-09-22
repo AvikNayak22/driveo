@@ -18,7 +18,7 @@ const Header = ({ label, isHome }: HeaderProps) => {
               <ChevronDown />
             </div>
           </PopoverTrigger>
-          <PopoverContent className="px-0 py-2">
+          <PopoverContent className="p-2 w-fit">
             <PopoverActions />
           </PopoverContent>
         </Popover>

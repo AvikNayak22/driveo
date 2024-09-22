@@ -39,7 +39,7 @@ const ListItem = ({ item }: ListItemProps) => {
         {format(new Date(item.timestamp.seconds * 1000), "MMM dd, yyyy")}
       </TableCell>
       <TableCell>{item.size ? byteConverter(item.size) : <Minus />}</TableCell>
-      <TableCell className="text-right">
+      <TableCell className="flex justify-end group items-center space-x-2">
         <ListAction item={item} />
       </TableCell>
     </TableRow>
