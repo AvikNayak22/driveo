@@ -23,7 +23,7 @@ const Lists = ({ files, folders }: ListsProps) => {
   return layout === "list" ? (
     <Table className="mt-4">
       <TableHeader>
-        <TableRow className="dark:text-white">
+        <TableRow>
           <TableHead>Name</TableHead>
           <TableHead>Owner</TableHead>
           <TableHead>Created at</TableHead>
