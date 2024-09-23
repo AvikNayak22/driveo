@@ -17,9 +17,10 @@ import { toast } from "sonner";
 
 interface ListActionProps {
   item: IFolderAndFile;
+  onStartEditing?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-const ListAction = ({ item }: ListActionProps) => {
+const ListAction = ({ item, onStartEditing }: ListActionProps) => {
   const router = useRouter();
 
   const type = item.size ? "files" : "folders";
